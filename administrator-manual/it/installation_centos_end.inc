@@ -6,17 +6,12 @@ Per installare il sistema di base eseguire: ::
 
  nethserver-install
 
-Al termine dell'installazione, :ref:`accedere al Server Manager
-<access-section>` per :ref:`installare il software
-<package_manager-section>` addizionale.
-
-
 Per promuovere la macchina a |product| eseguire da linea di comando: ::
 
-    yum localinstall http://update.nethesis.it/nethserver/7/nethserver-register.rpm
+    yum -c http://update.nethesis.it/nethserver-6-nethesis-support.conf install nethserver-register nethserver-nethserverenterprise-branding
 
-Quindi :ref:`accedere al Server Manager <access-section>` e :ref:`registrare la macchina
+Come ultimo passaggio per attivare il supporto Nethesis :ref:`accedere
+al Server Manager <access-section>` e :ref:`registrare la macchina
 <registration-section>`.
-Al termine della registazione, eseguire da linea di comando: ::
 
-    yum update @nethserver-iso
+

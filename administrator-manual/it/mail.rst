@@ -56,7 +56,7 @@ dominio sono disponibili due modalità:
 |product| permette di conservare una :dfn:`copia nascosta` di tutte le
 mail in transito, con relativo contenuto (quindi non un semplice log
 di mittenti e destinatari): tutti i messaggi verranno consegnati sia
-al destinatario sia ad un indirizzo personalizzato. Questa opzione è
+al destinatario sia ad un utente o gruppo locale.  Questa opzione è
 configurabile individualmente per ciascun dominio gestito dal server
 di posta.
 
@@ -72,8 +72,8 @@ di posta.
 
 La funzionalità :dfn:`Aggiungi una nota legale in calce ai messaggi
 inviati` aggiunge automaticamente alle email in spedizione un testo
-predefinito, detto :index:`disclaimer`, utilizzabile per esempio, per
-soddisfare possibili requisiti di legge. Si noti che :dfn:`firma` e
+predefinito, detto :index:`disclaimer`, utilizzabile, per esempio, per
+soddisfare possibili requisiti di legge.  Si noti che :dfn:`firma` e
 disclaimer sono concetti molto diversi.
 
 La firma dovrebbe essere inserita nel testo della email solo
@@ -96,7 +96,7 @@ Esempio di disclaimer: ::
 
  Le informazioni contenute nella presente comunicazione e i relativi
  allegati possono essere riservate e sono, comunque, destinate
- esclusivamente alle persone o alla Società sopraindicati. La
+ esclusivamente alle persone o alla Società sopraindicati.  La
  diffusione, distribuzione e/o copiatura del documento trasmesso da
  parte di qualsiasi soggetto diverso dal destinatario è proibita, sia
  ai sensi dell'art. 616 c.p. , che ai sensi del D.Lgs. n. 196/2003.
@@ -114,26 +114,11 @@ la formattazione del testo.
 Indirizzi email
 ===============
 
-.. index::
-    pair: utente; email
-
-Ogni utente ha un propria :dfn:`casella di posta` e ogni nome utente nella forma *<username>@<domain>* è anche un indirizzo email valido a cui inviare messaggi.
-La lista delle caselle di posta è visualizzata nella pagina :guilabel:`Indirizzi email > Caselle di posta utente`. Il pulsante :guilabel:`Modifica cvkasd` consente di disabilitare :guilabel:`Accesso ai servizi email` (IMAP, POP3, SMTP/AUTH) per un utente specifico e i messaggi inviati a questo utente posso essere inoltrati a un indirizzo email esterno.
-
-.. index::
-    pair: condivisione; email
-
-Le caselle di posta possono essere condivise tra gruppi di utenti. La pagina :guilabel:`Indirizzi email > Caselle di posta condivise` consente la creazione di una nuova :dfn:`casella di posta condivisa` e la definizione di uno o più gruppi a cui appartiene.
-
-
 Il sistema consente la creazione di un numero illimitato di
-:dfn:`indirizzi email` aggiuntivi, dalla pagina :guilabel:`Indirizzi email > Indirizzi email aggiuntivi`. Ogni indirizzo :dfn:`indirizzo email aggiuntivo` è associato con una o più destinazioni. Una :dfn:`destinazione` può essere:
-
-* casella di posta utente
-* casella di posta condivisa
-* indirizzo email esterno
-
-Un indirizzo email aggiuntivo può essere associato a qualsiasi dominio di posta o ad uno specifico. Per esempio:
+:dfn:`indirizzi email` detti anche :index:`pseudonimi` dalla pagina
+:guilabel:`Indirizzi email`.  Ciascun indirizzo è associato ad un
+utente o un gruppo di sistema, può funzionare con tutti i domini
+configurati oppure solo su domini specifici.  Per esempio:
 
 * Primo dominio: miodominio.it
 * Secondo dominio: esempio.com
@@ -150,25 +135,73 @@ A volte, un'azienda preferisce che le comunicazioni aziendali tramite
 email utilizzino degli indirizzi email "ufficiali"
 (amministrazione@dominio.it o supporto@dominio.it) piuttosto che
 indirizzi nominativi (nome.cognome@dominio.it), perché il destinatario
-potrebbe essere assente ed in questo caso non si corre il rischio di
+potrebbe essere assente, ed in questo caso non si corre il rischio di
 lasciarsi sfuggire eventuali risposte.
 
 L'opzione :guilabel:`Solo reti locali` permette di inibire per un
 singolo indirizzo email la possibilità di ricevere messaggi
 dall'esterno, pur mantenendo attiva la propria casella postale per la
-posta interna. L'indirizzo privato non potrà ricevere mail
+posta interna.  L'indirizzo privato non potrà ricevere mail
 proveniente dall'esterno: tale tecnica rende inutile qualsiasi tipo di
 invio all'esterno, dato che inibisce ogni risposta da parte del
 destinatario.
 
+Quando si crea un nuovo account dalle pagine :guilabel:`Utenti` o
+:guilabel:`Gruppi`, il sistema suggerisce un indirizzo email di
+default per ogni dominio di posta configurato.
+
+Per esempio:
+
+* Nome utente: mario.rossi
+* Dominio: mycompany.it, mycompany.net
+* Indirizzi di default: mario.rossi@mycompany.it, mario.rossi@mycompany.net
+
+.. index::
+   pair: email; casella di posta
+   pair: email; mailbox
 
 .. _email_mailboxes:
 
+Caselle di posta di utenti e gruppi
+===================================
 
-Configurazione caselle di posta
-===============================
+I messaggi di posta elettronica consegnati ad un utente o gruppo, così
+come configurato dalla pagina :ref:`email_addresses`, sono scritti in
+una posizione del disco chiamata :dfn:`casella di posta` (mailbox).
 
-La pagina :guilabel:`Email > Caselle di posta` mostra l'elenco dei protocolli disponibili per l'accesso alle caselle di posta:
+Quando viene installato il modulo Email, eventuali utenti e gruppi già
+esistenti non hanno una casella di posta associata.  Essa deve essere
+abilitata in maniera esplicita dalla scheda :guilabel:`Utenti >
+Servizi` o :guilabel:`Gruppi > Servizi`.  Al contrario, i nuovi
+account hanno questa opzione abilitata di default.
+
+.. index::
+   pair: email; inoltro messaggi
+
+Dalla stessa scheda :guilabel:`Servizi` delle pagine
+:guilabel:`Utenti` e :guilabel:`Gruppi` può essere impostato un
+indirizzo email esterno dove saranno inoltrati i messaggi.  Una copia
+di ogni singolo messaggio può essere mantenuta sul server stesso.
+
+.. index::
+   triple: email; gruppo; cartella condivisa
+
+.. _email_sharedfolder:
+
+Quando un indirizzo è associato ad un gruppo, il server può essere
+configurato per consegnare i messaggi di posta in due modi, dalla
+scheda :guilabel:`Gruppi > Servizi`:
+
+* inviare una copia del messaggio a ciascun membro del gruppo
+* depositare il messaggio in una :dfn:`cartella condivisa`.  Questa
+  opzione è raccomandata per gruppi con tanti membri che ricevono
+  allegati molto grandi.
+
+.. warning:: L'eliminazione di un gruppo o di un utente rimuove la
+  casella di posta associata!
+
+Il server consente di accedere alle proprie caselle di posta
+utilizzando due protocolli:
 
 * IMAP [#IMAP]_ (raccomandato)
 * POP3 [#POP3]_ (sconsigliato)
@@ -176,7 +209,7 @@ La pagina :guilabel:`Email > Caselle di posta` mostra l'elenco dei protocolli di
 Per motivi di sicurezza, tutti protocolli richiedono la connessione
 cifrata in modalità STARTTLS.  Anche se fortemente sconsigliato, è
 possibile disabilitare la cifratura abilitando l'opzione
-:guilabel:`Consenti connessioni non cifrate`. In questo modo le
+:guilabel:`Consenti connessioni non cifrate`.  In questo modo le
 password e i contenuti dei messaggi possono transitare in chiaro nella
 rete.
 
@@ -184,15 +217,15 @@ rete.
              produzione!
 
 .. index::
-   triple: email; personalizzato; quota
+   triple: email; custom; quota
 
 Dalla stessa pagina lo :guilabel:`Spazio disco` di una casella di
 posta può essere limitato da una :dfn:`quota` prestabilita.  Se alle
 caselle di posta è applicata una quota, la pagina
 :guilabel:`Dashboard > Mail quota` riassume l'utilizzo dello spazio
 disco di ogni utente.  La quota può essere personalizzata per un
-utente particolare dal controllo :guilabel:`Indirizzi email > Caselle utenti 
-> Modifica > Quota email personalizzata`.
+utente particolare dal controllo :guilabel:`Utenti > Modifica >
+Servizi > Quota email personalizzata`.
 
 .. index::
    pair: email; conserva spam
@@ -200,31 +233,31 @@ utente particolare dal controllo :guilabel:`Indirizzi email > Caselle utenti
 
 I messaggi marcati come **spam** (vedi :ref:`email_filter`) possono
 essere spostati automaticamente all'interno della cartella
-:dfn:`Junk` abilitando l'opzione :guilabel:`Sposta nella cartella
-"Junk"`. I messaggi di spam vengono automaticamente rimossi dopo
+:dfn:`junkmail` abilitando l'opzione :guilabel:`Sposta nella cartella
+"junkmail"`.  I messaggi di spam vengono automaticamente rimossi dopo
 che è trascorso il periodo specificato da :guilabel:`Conserva per`.
 Tale periodo può essere personalizzato per un utente particolare dal
 controllo :guilabel:`Utenti > Modifica > Servizi > Personalizza tempo
 di permanenza delle email di spam`.
 
 .. index::
-   pair: email; utente master
+   pair: email; master user
 
-L'utente ``root`` può impersonare un altro utente, acquisendo pieni
+L'utente ``admin`` può impersonare un altro utente, acquisendo pieni
 diritti sui contenuti della casella di posta e sui permessi delle
-cartelle di quest'ultimo. L'opzione :guilabel:`Root può accedere
+cartelle di quest'ultimo.  L'opzione :guilabel:`Admin può accedere
 impersonando un altro utente` controlla questa facoltà, conosciuta con
 il nome di *master user* in [#Dovecot]_.
 
-Quando :guilabel:`Root può accedere impersonando un altro utente` è
+Quando :guilabel:`Admin può accedere impersonando un altro utente` è
 abilitata, il server IMAP accetta qualsiasi nome utente al quale sia
-aggiunto il suffisso ``*root`` e la password di ``root`` come
+aggiunto il suffisso ``*admin``, e la password di ``admin`` come
 credenziali valide.
 
-Per esempio, per accedere come ``john`` con la password di root
+Per esempio, per accedere come ``john`` con la password di admin
 ``secr3t``, utilizzare le seguenti credenziali:
 
-* nome utente: ``john*root``
+* nome utente: ``john*admin``
 * password: ``secr3t``
 
 .. _email_messages:
@@ -233,31 +266,31 @@ Messaggi
 ========
 
 .. index::
-   pair: email; dimensione
-   pair: email; tentativi
+   pair: email; size
+   pair: email; retries
    pair: email; coda dei messaggi
 
 Dalla pagina :guilabel:`Email > Messaggi`, il controllo
 :guilabel:`Accetta messaggi fino a` imposta la dimensione massima dei
-messaggi che attraversano il sistema. Se questo limite è superato, un
+messaggi che attraversano il sistema.  Se questo limite è superato, un
 messaggio non entra affatto nel sistema, e viene rifiutato.
 
 Quando un messaggio entra in |product|, viene registrato nella
 :dfn:`coda messaggi`, in attesa di essere consegnato o inoltrato
-altrove (relay). Quando |product| inoltra un messaggio ad un server
-remoto, possono verificarsi degli errori. Per esempio:
+altrove (relay).  Quando |product| inoltra un messaggio ad un server
+remoto, possono verificarsi degli errori. Per esempio,
 
 * la connessione di rete fallisce, oppure
-* l'altro server è spento, o è in sovraccarico
+* l'altro server è spento, o è sovraccarico.
 
 Questi ed altri errori sono *temporanei*: in questi casi, |product|
 tenta di riconnettersi all'host remoto ad intervalli regolari, finché
-viene raggiunto un limite. Il controllo :guilabel:`Tenta l'invio per`
-imposta questo limite. Di default è impostato a *4 giorni*.
+viene raggiunto un limite.  Il controllo :guilabel:`Tenta l'invio per`
+imposta questo limite.  Di default è impostato a *4 giorni*.
 
 Mentre i messaggi sono nella coda, l'amministratore può richiedere un
 tentativo immediato di spedizione, premendo il pulsante
-:guilabel:`Tenta l'invio` dalla scheda :guilabel:`Gestione coda`. In
+:guilabel:`Tenta l'invio` dalla scheda :guilabel:`Gestione coda`.  In
 alternativa, l'amministratore può eliminare i messaggi in coda in
 maniera selettiva, o svuotare completamente la coda mediante il
 pulsante :guilabel:`Elimina tutti`.
@@ -267,8 +300,8 @@ pulsante :guilabel:`Elimina tutti`.
    pair: email; copia nascosta
    pair: email; bcc
 
-L'opzione :guilabel:`Spedisci sempre una copia` abilita la copia
-nascosta di qualsiasi messaggio attraversi il server di posta. Questa
+L'opzione :guilabel:`Spedisci sempre una copia` abilita la una copia
+nascosta di qualsiasi messaggio attraversi il server di posta.  Questa
 funzionalità è differente dall'opzione simile nella scheda
 :guilabel:`Email > Domain` perché non fa differenza tra i domini di
 posta e in più cattura i messaggi in uscita.
@@ -278,12 +311,12 @@ posta e in più cattura i messaggi in uscita.
              Privacy.
 
 .. index::
-   pair: email; smarthost
+   pair: email; smart-host
 
 L'opzione :guilabel:`Invia tramite smarthost` obbliga tutti i messaggi
 in uscita ad essere diretti verso un server SMTP speciale, detto in
-gergo :dfn:`smarthost`. Uno smarthost accetta d'inoltrare i messaggi
-sotto certe restrizioni. Potrebbe controllare:
+gergo :dfn:`smarthost`.  Uno smarthost accetta di inoltrare i messaggi
+sotto certe restrizioni.  Potrebbe controllare:
 
 * l'indirizzo IP del client
 * le credenziali SMTP AUTH
@@ -295,7 +328,7 @@ sotto certe restrizioni. Potrebbe controllare:
 
 
 .. index::
-   pair: email; filtro
+   pair: email; filter
 
 .. _email_filter:
 
@@ -337,7 +370,7 @@ Anti-virus
 ----------
 
 Il componente anti-virus individua i messaggi di posta elettronica
-contenenti virus. I messaggi infetti vengono scartati. Il database
+contenenti virus. I messaggi infetti vengono scartati.  Il database
 contenente le impronte dei virus è aggiornato periodicamente.
 
 .. index::
@@ -352,14 +385,14 @@ Anti-spam
 Il filtro :dfn:`anti-spam` [#Spamassassin]_ analizza la posta
 elettronica rilevando e classificando un messaggio come :dfn:`spam`
 [#SPAM]_ utilizzando criteri euristici, regole predeterminate e
-valutazioni statistiche sul contenuto del messaggio. Le regole sono pubbliche e aggiornate periodicamente.
+valutazioni statistiche sul contenuto del messaggio. 
 Il filtro inoltre può controllare se il server mittente è presente in una 
 o più blacklist (:index:`DNSBL`).
 Un punteggio è associato ad ognuna di queste regole.
 
 Il punteggio totale raccolto alla fine dell'analisi consente al server
 di decidere se *rifiutare* il messaggio o *marcarlo* come spam e
-consegnarlo lo stesso. Le soglie dei punteggi sono controllate
+consegnarlo lo stesso.  Le soglie dei punteggi sono controllate
 mediante i cursori :guilabel:`Soglia spam` e :guilabel:`Soglia rifiuto
 messaggio`, nella pagina :guilabel:`Email > Filtro`.
 
@@ -428,12 +461,12 @@ Benchè sconsigliato è possibile creare regole non solo sul singolo indirizzo e
           impostazioni di *whitelist*.
 
 .. index::
-   pair: porta; imap
-   pair: porta; imaps
-   pair: porta; pop3
-   pair: porta; pop3s
-   pair: porta; smtp
-   pair: porta; smtps
+   pair: port; imap
+   pair: port; imaps
+   pair: port; pop3
+   pair: port; pop3s
+   pair: port; smtp
+   pair: port; smtps
 
 .. _email-port25:
 
@@ -442,7 +475,7 @@ Blocco porta 25
 
 Se il sistema è anche il gateway della rete, le zone blue e green
 non potranno inviare mail a server esterni usando la porta 25 (SMTP).
-Il blocco della porta 25 evita che macchine nella LAN siano
+Il blocco della porta 25 evita che macchine eventuali macchine nella LAN siano
 utilizzate da remoto per l'invio di SPAM.
 
 L'amministratore può cambiare questa politica creando un'apposita regola del firewall
@@ -467,7 +500,6 @@ le seguenti varianti:
 
 * LOGIN
 * PLAIN
-* GSSAPI (solo se |product| è in bound con Samba/Microsoft Active Directory)
 
 Inoltre le seguenti porte SSL sono disponibili per software datato che
 ancora non supporta STARTTLS:
@@ -478,7 +510,7 @@ ancora non supporta STARTTLS:
 
 .. warning:: La porta SMTP standard 25 è riservata per i trasferimenti
 	     di messaggi tra server MTA. Nei client utilizzare solo le
-	     porte *summenzionate*.
+	     porte *submission*.
 
 Se |product| agisce anche come server DNS nella LAN, registra il suo
 nome come record MX insieme ai seguenti alias:
@@ -506,7 +538,6 @@ root e digitare: ::
 
   config setprop postfix MxRecordStatus disabled
   signal-event nethserver-hosts-update
-
 
 .. _email_policies:
 
@@ -553,7 +584,7 @@ HELO personalizzato
 Il primo passo di una sessione SMTP è lo scambio del comando
 :dfn:`HELO` (o :dfn:`EHLO`).  Tale comando richiede un parametro
 obbligatorio che l'RFC 1123 definisce come il nome di dominio
-principale e valido del server.
+principale, valido, del server.
 
 |product| ed altri server di posta, nel tentativo di ridurre lo spam,
 non accettano HELO con domini non registrati nel DNS pubblico.
@@ -574,12 +605,104 @@ registrare gratuitamente un DNS dinamico, associarlo all'IP pubblico
 del server ed utilizzare questo dominio come parametro ``HeloHost``
 del precedente comando.
 
+.. _email_ads:
+
+Email in Active Directory
+=========================
+
+Il modulo Email si integra in un ambiente Active Directory (AD) se il
+ruolo :ref:`samba_ads` è abilitato nella pagina :guilabel:`Rete
+Windows`.
+
+Assicurarsi che il valore del campo :guilabel:`Ramo LDAP degli
+account` nella pagina :guilabel:`Rete Windows` sia correttamente
+impostato al ramo LDAP sotto cui gli utenti e i gruppi per cui
+attivare l'email sono posizionati.
+
+Questo è l'esempio di un nodo LDAP corrispondente ad un utente di AD
+(alcuni attributi sono stati omessi): ::
+
+    dn: CN=John Smith,OU=Sviluppo,OU=Nethesis,DC=adnethesis,DC=it
+    objectClass: top
+    objectClass: person
+    objectClass: organizationalPerson
+    objectClass: user
+    cn: John Smith
+    sn: Smith
+    givenName: John
+    distinguishedName: CN=John Smith,OU=Sviluppo,OU=Nethesis,DC=adnethesis,DC
+     =it
+    instanceType: 4
+    displayName: John Smith
+    memberOf: CN=sviluppo,OU=Nethesis,DC=adnethesis,DC=it
+    memberOf: CN=secgroup,OU=Nethesis,DC=adnethesis,DC=it
+    memberOf: CN=tecnici,OU=Nethesis,DC=adnethesis,DC=it
+    name: John Smith
+    primaryGroupID: 513
+    sAMAccountName: john.smith
+    sAMAccountType: 805306368
+    userAccountControl: 66048
+    userPrincipalName: john.smith@adnethesis.it
+    objectCategory: CN=Person,CN=Schema,CN=Configuration,DC=adnethesis,DC=it
+    mail: john@adnethesis.it
+    otherMailbox: smtp:js@adnethesis.it
+    proxyAddresses: smtp:j.smith@adnethesis.it
+
+Per far funzionare |product| con il database LDAP esterno di Active
+Directory vengono applicate le seguenti regole:
+
+#. Sono considerati solo gli account abilitati (attributo
+   ``userAccountControl``).
+
+#. Il nome di login per IMAP e SMTP è preso dall'attributo
+   ``sAMAccountName``.
+
+#. Gli indirizzi email associati ad un utente provengono dagli
+   attributi ``mail``, ``otherMailbox`` e ``proxyAddresses``. Gli
+   ultimi due si aspettano il prefisso ``smtp:`` prima del valore vero
+   e proprio. Inoltre ``userPrincipalName`` è di default considerato
+   anche come indirizzo email, ma può essere disabilitato (vedi
+   :ref:`i comandi qui sotto
+   <email_topic_AdsMapUserPrincipalStatus>`).
+
+#. L'indirizzo email di un gruppo è preso dal suo attributo
+   ``mail``. Per default ogni gruppo è trattato come una *lista di
+   distribuzione*: una copia del messaggio è consegnata ai suoi
+   membri.
+
+#. Il suffisso di dominio degli indirizzi email specificati dagli
+   attributi suddetti deve corrispondere ad uno dei :ref:`domini
+   configurati <email_domains>`, altrimenti viene ignorato.
+
+Per configurare globalmente i *gruppi di sicurezza* per ricevere i
+messaggi in una :ref:`cartella condivisa <email_sharedfolder>`,
+digitare i seguenti comandi nella console di root: ::
+
+   config setprop postfix AdsGroupsDeliveryType shared
+   signal-event nethserver-samba-save
+
+.. warning:: Evitare le lettere maiuscole nel nome dei gruppi di AD
+             con cartella condivisa: le ACL IMAP non funzionano come
+             atteso. Vedere `BUG#2744`_.
+
+
+.. _email_topic_AdsMapUserPrincipalStatus:
+
+Per evitare che l'attributo ``userPrincipalName`` sia considerato un
+indirizzo email valido, digitare i seguenti comandi nella console di
+root: ::
+
+   config setprop postfix AdsMapUserPrincipalStatus disabled
+   signal-event nethserver-samba-save
+
+.. _BUG#2744: http://dev.nethserver.org/issues/2744
+
 .. _email_outlook_deleted:
 
 Posta eliminata Outlook
 =======================
 
-A differenza della quasi totalità dei client IMAP, Outlook non sposta i messaggi eliminati nel cestino, ma si limita a marcarli "cancellati".
+A differenza della quasi totalià dei client IMAP, Outlook non sposta i messaggi eliminati nel cestino, ma si limita a marcarli "cancellati".
 E' possibile forzare lo spostamento di tali messaggi nel cestino con questi comandi: ::
 
  config setprop dovecot DeletedToTrash enabled
@@ -604,12 +727,49 @@ file di log:
 
 Un transazione registrata nel file :file:`maillog` di solito coinvolge
 diversi componenti del server di posta.  Ogni riga contiene
-rispettivamente:
+rispettivamente
 
 * la data e l'ora
 * il nome host
 * il nome del componente e l'id del processo dell'istanza
 * il testo che descrive l'operazione
+
+Di seguito una breve descrizione dei nomi dei componenti e delle
+azioni tipiche che eseguono:
+
+``transfer/smtpd``
+
+  Identifica il demone SMTP in ascolto sulla porta 25 pubblica.  Una
+  riga di log di questo componente segnala un'attività che coinvolge
+  un altro server di posta (MTA).
+
+``submission/smtpd``
+
+  Identifica il demone SMTP in ascolto sulla porta 587 o 465 pubblica.
+  Una riga di log di questo componente segnala un'attività che
+  coinvolge un client di posta (MUA) che spedisce un messaggio.
+
+``amavis``
+
+  Il demone SMTP Amavis applica tutte le regole di filtraggio della
+  posta elettronica.  Le righe di log di questo componente dettagliano
+  le decisioni prese dal filtro.
+
+``relay/smtp``
+
+  Questo è il client SMTP connesso ad un server remoto: prende un
+  messaggio dalla coda e lo trasferisce al server remoto, così come
+  specificato dalla configurazione dei domini di posta.
+
+``delivery/lmtp``
+
+  I messaggi diretti agli account locali sono presi dalla coda e
+  trasferiti all'istanza di Dovecot locale.
+
+``dovecot``
+
+  Il demone Dovecot consegna i messaggi nelle caselle di posta degli
+  utenti, eventualmente applicando i filtri Sieve.
 
 Un quadro di tutto il sistema è disponibile dal sito *workaround.org* [#MailComponents]_.
 
@@ -630,4 +790,4 @@ Un quadro di tutto il sistema è disponibile dal sito *workaround.org* [#MailCom
 .. [#SPAM] SPAM http://it.wikipedia.org/wiki/Spam
 .. [#Spamassassin] Spamassassin home page http://wiki.apache.org/spamassassin/Spam
 .. [#BAYES] Filtro bayesiano http://it.wikipedia.org/wiki/Filtro_bayesiano
-.. [#MailComponents] The wondrous Ways of an Email https://workaround.org/ispmail/wheezybig-picture/
+.. [#MailComponents] The wondrous Ways of an Email https://workaround.org/ispmail/lenny/bigpicture

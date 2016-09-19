@@ -15,8 +15,11 @@ Dashboard
 =========
 
 La pagina mostrata di default dopo il login è la :index:`Dashboard`; qui viene
-visualizzato un riepilogo dello :index:`stato` del sistema e delle sue
+visualizzato un riepilogo dello stato del sistema e delle sue
 impostazioni.
+
+Vengono riportate la configurazione di rete, l’uso della memoria, l’uso
+del disco, informazioni sul carico ed uptime della macchina, etc.
 
 .. _duc-section:
 
@@ -63,12 +66,10 @@ Le reti gestite devono sottostare alle regole seguenti:
 * le reti private (es. LAN) devono rispettare le regole per gli indirizzi specificate nel documento RFC1918.
   Vedi :ref:`RFC1918-section`
 
-.. index:: zone, role
-
 Ogni interfaccia di rete ha un ruolo specifico che ne determina l'utilizzo e il comportamento. I ruoli sono indicati
-tramite colori. Ogni colore indica la zona di appartenenza della scheda di rete e le regole ad essa applicate:
+tramite colori. Ogni colore indica la zona di appartenenza della scheda di rete e le regole ad essa applicate.
 
-* *green*: rete locale. I computer su questa rete possono accedere a qualsiasi altra rete configurata sul server
+* *green*: rete locale. I computer su questa rete possono accedere a qualsiasi altra rete configurata sul server 
 * *blue*: rete ospiti.  I computer su questa rete possono accedere alle reti orange e red, ma non possono accedere alla zona green
 * *orange*: rete DMZ. I computer su questa rete possono accedere alle reti red, ma non possono accedere alle zone blue e green
 * *red*: rete pubblica. I computer in questa rete possono accedere solo al server stesso
@@ -78,9 +79,9 @@ Si veda :ref:`policy-section` per maggiori informazioni sull'uso dei ruoli nelle
 .. note:: Il server deve avere almeno un'interfaccia di rete. Quando il server ha una sola scheda di rete, tale scheda deve avere il ruolo green.
 
 In caso di installazione su VPS (Virtual Private Server) pubblico, il server deve essere configurato con una schede di rete green.
-Si consiglia quindi di chiudere le porte dei servizi critici usando il pannello :ref:`network_services-section`.
+Si consiglia quindi di chiudere le porte dei servizi critici usando il pannello :ref:`network_services-section`. 
 
-.. _alias_IP-section:
+.. _logical_interfaces-section:
 
 Alias IP
 --------
@@ -89,11 +90,9 @@ Per assegnare più indirizzi IP alla stessa scheda è possibile utilizzare gli a
 
 In tal modo è possibile ad esempio associare alla stessa red più indirizzi IP della stessa classe e gestirli in modo indipendente (ad esempio con dei port forward che discriminano in base allo specifico IP di destinazione).
 
-L'alias è configurabile cliccando nel menu a tendina della specifica scheda di rete e avrà lo stesso ruolo della scheda fisica associata.
+L'alias è configurabile cliccando nel menu a tendina della specifica scheda di rete e avrà lo stesso ruolo della scheda fisica associata. 
 
 .. note:: L'alias IP su interfaccia PPPoE in alcuni casi potrebbe non funzionare correttamente a causa di differenze nella fornitura del servizio tra i vari provider internet.
-
-.. _logical_interfaces-section:
 
 Interfacce logiche
 ------------------
@@ -130,9 +129,6 @@ Quando non è possibile separare fisicamente due reti diverse, è possibile util
 essere trasmesso sullo stesso cavo ma sarà trattato come se fosse inviato e ricevuto da due schede separate.
 L'utilizzo delle VLAN necessita di switch adeguatamente configurati.
 
-.. warning:: All'interfaccia logica **PPPoE*** deve essere assegnato il ruolo di
-             `red`, quindi richiede la funzionalità di gateway. Vedi :ref:`firewall-section` per i dettagli.
-
 .. _RFC1918-section:
 
 Numerazione delle reti private (RFC1918)
@@ -141,7 +137,7 @@ Numerazione delle reti private (RFC1918)
 Per reti private TCP/IP indirettamente connesse a Internet che utilizzano un servizio di
 conversione degli indirizzi di rete (NAT) o un gateway di livello applicazione,
 quale un server proxy, l'Internet Assigned Numbers Authority (IANA) consiglia di utilizzare
-gli indirizzi IP privati indicati nella tabella seguente.
+gli indirizzi IP privati indicati nella tabella che segue.
 
 ===============   ===========   =============================
 ID rete privata   Subnet mask   Intervallo di indirizzi IP
@@ -171,13 +167,15 @@ Le politiche di accesso disponibili sono:
 * Accesso dalle reti green e red (public): tutti gli host dalle reti green, VPN e reti esterne. Ma non dalla rete ospiti (blue) e dalla DMZ (orange)
 * Accesso solo dal server stesso (none): nessun host può collegarsi al servizio selezionato
 
+Se si selezionano le prime due politiche elencate è possibile specificare un host (o una lista di host) a cui l'accesso
+al servizio è sempre bloccato o sempre permesso.
 
 Accesso personalizzato
 ----------------------
 
-Se la politica selezionata è private o public, è possibile specificare una lista di host e reti che sono sempre
+Se la politica selezionata è private o public, è possibile specificare una lista di host e reti che sono sempre 
 consentiti (o bloccati) usando i campi :guilabel:`Consenti host` e :guilabel:`Blocca host`.
-La regola si applica anche per le reti orange e blue.
+La regola di applica anche per le reti orange e blue.
 
 Esempio
 ^^^^^^^
@@ -203,6 +201,11 @@ Ad esempio, i computer sulle reti fidate possono accedere a:
 
 * Server Manager
 * Cartelle condivise (SAMBA)
+* Servizi web per reti locali (Statistiche)
+
+Se si desidera che gli utenti collegati in VPN possano accedere a
+tutti i servizi del sistema, aggiungere le reti delle VPN a questo
+pannello.
 
 Se la rete remota è raggiungibile attraverso un router, ricordarsi di
 creare la rotta statica corrispondente nel pannello
@@ -223,6 +226,7 @@ Se si desidera che gli host nella rete remota possano accedere ai servizi
 del server, ricordarsi di creare una rete corrispondente nel pannello
 :guilabel:`Reti fidate`.
 
+
 Vedi :ref:`trusted_networks-section`.
 
 
@@ -238,51 +242,199 @@ pagina di login del Server Manager.
 
 
 .. index::
-   pair: Certificato; SSL
+   pair: Certificato; SSL   
 
 .. _server_certificate-section:
 
 Certificato del server
 ======================
 
-La pagina :guilabel:`Certificato del server` mostra i certificati X.509
-attualmente installati e il certificato di default fornito dal sistema per
-cifrare le comunicazioni TLS/SSL.
+La pagina :guilabel:`Certificato del server` mostra il certificato SSL
+attualmente installato e che viene presentato da tutti i servizi
+presenti nel sistema.
 
-Il pulsante :guilabel:`Imposta default` consente di scegliere il certificato di
-default. Quando viene scelto un nuovo certificato, tutti i servizi che
-utilizzano TLS/SSL vengono riavviati e i client di rete devono accettare il
-nuovo certificato.
+Il pulsante :guilabel:`Nuovo certificate` consente di generare un
+nuovo certificato SSL auto-firmato. Se si genera un nuovo certificato,
+tutti i servizi SSL verranno riavviati e ai client di rete sarà
+richiesto di accettare il nuovo certificato.
 
-Quando |product| è installato viene automaticamente generato un certificato
-auto-firmato. Dovrebbe essere modificato inserendo dei valori appropriati prima
-di utilizzarlo dai client di rete. Come alternative, la pagina
-:guilabel:`Certificato del server` consente di:
-
-* caricare un certificato esistente e la chiave privata RSA. In aggiunta può
-  essere specificato anche un *chain file*. Tutti i file devono essere codificati
-  nel formato PEM.
-
-* richiedere un nuovo certificato di *Let's Encrypt* [#Letsencrypt]_. Questo è
-  possibile se sono rispettati i seguenti requisiti:
-
-  1. il server deve essere raggiungibile dall'esterno alla porta 80. Assicurarsi
-     che la porta 80 è aperta alle connessioni da Internet (si può effettuare un
-     test da siti come [#CSM]_);
-
-  2. i domini che si vogliono associare al certificato devono essere domini pubblici,
-     associati all'indirizzo IP pubblico del server. Assicurarsi di avere un nome
-     registrato nel DNS pubblico che punta correttamente al proprio server (si
-     può effettuare un test da siti come [#VDNS]_).
 
 .. note::
-       Per evitare problemi di importazione certificato con Internet Explorer,
-       si consiglia di configurare il campo CN (Common Name) o Nome Comune
-       in modo che corrisponda al FQDN del server.
+   Per evitare problemi di importazione certificato con Internet Explorer,
+   si consiglia di configurare il campo CN (Common Name) o Nome Comune
+   in modo che corrisponda al FQDN del server.
 
-.. [#Letsencrypt] Sito web di *Let's Encrypt* https://letsencrypt.org/
-.. [#CSM] Sito web http://www.canyouseeme.org/
-.. [#VDNS] Sito web http://viewdns.info/
+.. _custom_certificate-section:
+
+Installare un certificato personalizzato
+----------------------------------------
+
+I :index:`certificati personalizzati` devono essere salvati all'interno delle seguenti directory:
+
+* :file:`/etc/pki/tls/certs`: chiave pubblica
+* :file:`/etc/pki/tls/private`: chiave privata
+
+
+Configurare i percorsi della chiave pubblica e privata:
+
+::
+
+    db configuration setprop pki CrtFile '/path/to/cert/pem-formatted.crt'
+    db configuration setprop pki KeyFile '/path/to/private/pem-formatted.key'
+
+E' possibile anche configurare il file di chain SSL:
+
+::
+
+    db configuration setprop pki ChainFile '/path/to/cert/pem-formatted-chain.crt'
+
+Segnalare il cambio di certificato a tutti i demoni:
+
+::
+
+    signal-event certificate-update
+
+Backup certificato personalizzato
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ricordarsi sempre di aggiungere i certificati personalizzati al backup della configurazione.
+E' sufficiente aggiungere i percorsi nel file :file:`/etc/backup-config.d/custom.include`.
+
+Per esempio, se il certificato è :file:`/etc/pki/tls/certs/mycert.crt`, eseguire semplicemente: ::
+
+ echo "/etc/pki/tls/certs/mycert.crt" >> /etc/backup-config.d/custom.include
+
+Certificato Let's Encrypt
+-------------------------
+
+Let's Encrypt è una certification authority gratuita e aperta, gestita dall'associazione non-profit Internet Security Research Group (ISRG).
+Può creare certificati SSL validi utilizzabili sul sistema.
+
+Prerequisiti
+^^^^^^^^^^^^
+
+1. Il server deve essere raggiungibile dall'esterno sulla porta 80.
+
+   Assicurarsi che la porta 80 sia aperta al pubblico da Internet, è possibile controllarlo usando questo sito: http://www.canyouseeme.org/.
+
+2. Il fully qualified name (FQDN) del server deve essere pubblico, associato all'indirizzo IP pubblico del server.
+
+   Assicurarsi di avere un record DNS pubblico che punti al server, è possibile controllarlo con questo sito: http://viewdns.info/.
+
+Come funziona
+^^^^^^^^^^^^^
+
+Il sistema crea un singolo certificato per l'FQDN del server.
+
+Quando si desidera accedere al server, è necessario usare l'FQDN.
+Se si desidera accedere al server usando nomi multipli (alias), 
+Let's Encrypt può aggiungere altri nomi validi al certificato.
+
+
+**Esempio**
+
+FQDN del server: ''server.nethserver.org'' con IP pubblico ''1.2.3.4''.
+Si desidera accedere al server usando anche gli alias: '' mail.nethserver.org'' e ''www.nethserver.org''.
+
+Il server deve:
+
+* avere la porta 80 aperta su internet: accededendo all'indirizzo http://1.2.3.4 da un sito remoto, deve essere visibile la pagina di NethServer
+* avere un record DNS pubblico per ''server.nethserver.org'', ''mail.nethserver.org'' e ''www.nethserver.org''. 
+  Tutti i record DNS devono puntare allo stesso server (il server può avere anche indirizzi IP multipli).
+
+Installazione
+^^^^^^^^^^^^^
+
+Installare il pacchetto da linea di comando: ::
+
+    yum install nethserver-letsencrypt
+
+Configurazione
+^^^^^^^^^^^^^^
+
+La configurazione di Let's Encrypt deve essere fatta da linea di comando dall'utente root.
+Accedere al server usando un monitor o collegandosi via SSH.
+
+
+Certificato per FQDN
+~~~~~~~~~~~~~~~~~~~~
+
+Abilitare Let's Encrypt:
+Eseguuire: ::
+
+  config setprop pki LetsEncrypt enabled
+  signal-event nethserver-letsencrypt-update
+
+Certificato per alias (opzionale)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Il certificato FQDN può essere esteso per domini extra configurati come alias server.
+Questa funziona si chiama SubjectAltName (SAN): https://en.wikipedia.org/wiki/SubjectAltName
+
+Creare un alias per il server all'interno della pagina DNS, quindi abilitare Let's Encrypt sul record appena creato.
+
+Esempio per l'alias ''alias.mydomain.com'': ::
+
+    db hosts setprop alias.mydomain.com LetsEncrypt enabled
+
+
+Opzioni
+~~~~~~~
+
+Opzioni disponibili:
+
+* ``LetsEncryptMail``: se impostato, Let's Encrypt invierà una mail di notifica all'indirizzo specificato quando il certificato è in scadenza
+  (deve essere attivato prima di eseguire lo script letsencrypt-certs per la prima volta)
+* ``LetsEncryptRenewDays``: minimo numero di giorni entro i quali il certificato sarà rinnovato (default: 30)
+
+Esempio: ::
+
+  config setprop pki LetsEncryptMail admin@mydomain.com
+  signal-event nethserver-letsencrypt-update
+
+Provare la generazione del certificato
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Dal momento che è possibile richiedere un certificato al massimo 5 volte in una settimana,
+assicurarsi che la configurazione sia corretta prima di procedere.
+
+Eseguire ::
+
+  /usr/libexec/nethserver/letsencrypt-certs -v -t
+
+Questo comando genera un certificato di test usando Let's Encrypt. 
+Se tutto è configurato correttamente, l'output dovrebbe essere simile al seguente: ::
+
+  INFO: Using main config file /tmp/3XhzEPg7Dt
+  + Generating account key...
+  + Registering account key with letsencrypt...
+  Processing test1.neth.eu
+  + Signing domains...
+  + Creating new directory /etc/letsencrypt.sh/certs/test1.neth.eu ...
+  + Generating private key...
+  + Generating signing request...
+  + Requesting challenge for test1.neth.eu...
+  + Responding to challenge for test1.neth.eu...
+  + Challenge is valid!
+  + Requesting certificate...
+  + Checking certificate...
+  + Done!
+  + Creating fullchain.pem...
+  + Done!
+
+Verificare la presenza del certificato rilasciato da Let's Encrypt CA.
+
+Ottenere un certificato valido
+------------------------------
+
+Se la configurazione è stata validata con il test precedente, il sistema è pronto per richiedere un certificato valido.
+Eseguire: ::
+
+   /usr/libexec/nethserver/letsencrypt-certs -v
+
+
+Accedere al server http e verificare che il certificato sia valido.
+
 
 .. _user_profile-section:
 
@@ -291,7 +443,18 @@ Cambio password utente
 
 Ogni utente può collegarsi al Server Manager utilizzando le proprie credenziali ed accedere al :index:`profilo utente`.
 
-Dopo l'accesso, l'utente potrà :index:`cambiare la propria password`.
+Dopo l'accesso, l'utente potrà :index:`cambiare la propria password` e le informazioni associate al proprio account:
+
+* Nome e Cognome
+* Indirizzo email esterno
+
+L'utente può anche sovrascrivere i seguenti campi già impostati dall'amministratore:
+
+* Società
+* Ufficio
+* Indirizzo
+* Città
+* Telefono
 
 
 Arresto
@@ -310,7 +473,7 @@ Visualizza Log
 Tutti i servizi registrano le operazioni svolte all'interno di file detti :dfn:`log`.
 L'analisi dei :index:`log` è lo strumento principale per individuare malfunzionamenti e problemi.
 Per visualizzare i file di log fare clic su :menuselection:`Visualizza Log`.
-Si aprirà una pagina con l'elenco di tutti i file di log disponibili: fare click sui file che si intendo visualizzare.
+Si aprirà una pagina con l'elenco di tutti i file di log disponibili; fare click sui file che si intendo visualizzare.
 
 Questo modulo consente di:
 
@@ -349,3 +512,5 @@ Se il server ha indirizzo ``192.168.1.2`` e si desidera visualizzare la lista de
 usare il seguente indirizzo: ::
 
  https://192.168.1.2:980/it/Help
+
+

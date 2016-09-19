@@ -4,119 +4,38 @@
 Utenti e gruppi
 ===============
 
-|product| supporta autenticazione e autorizzazione su sorgenti remote o locali.
-
-Le sorgenti supportate sono:
-
-* LDAP: OpenLDAP eseguito su |product|
-* Active Directory: Samba Active Directory che gira localmente (o in remoto) oppure una macchina Windows AD esistente
-
-Dopo il wizard di prima configurazione, l'amministrazione può configurare la sorgente
-di autenticazione dalla pagina :guilabel:`Utenti e gruppi`.
-Se non è stato installato nessun pacchetto aggiuntivo, sarà possibile selezionare solo una sorgente remota.
-Gli utenti e i gruppi che appartengono ad una sorgente remota non possono essere modificati
-e sono configurati in *sola lettura*.
-
-Dopo aver installato una sorgente locale (Samba Active Directory o OpenLDAP), sarà possibile
-creare/modificare/eliminare utenti e gruppi locali.
-
-Si consiglia di selezionare con attenzione la sorgente di utenti e gruppi, in quanto la scelta non è reversibile.
-Inoltre, al termine della configurazione, il sistema non consentirà più di cambiare l'FQDN del server.
-
-OpenLDAP
-========
-
-Dal :guilabel:`Software Center` installare il pacchetto chiamato :guilabel:`Account provider: OpenLDAP`.
-Al termine dell'installazione. il pacchetto sarà automaticamente configurato e l'amministratore
-potrà gestire gli account dalla pagina :guilabel:`Utenti e gruppi`.
-
-
-Samba Active Directory
-======================
-
-Quando si installa Samba Active Directory, il sistema richiede un indirizzo IP addizionale
-che sarà l'indirizzo del controller Active Directory all'interno della LAN.
-
-L'indirizzo aggiuntivo deve soddisfare tre condizioni:
-
-* l'indirizzo IP deve essere nella subnet di una rete green
-* la rete green deve essere configurata su interfaccia di tipo bridge
-* l'indirizzo IP non deve essere usato da nessun'altra macchina nella LAN
-
-Dal :guilabel:`Software Center` installare il pacchetto :guilabel:`Account provider: Samba Active Directory`.
-Al termine dell'installazione, accedere alla pagina :guilabel:`Utenti e gruppi` e procedere
-alla prima configurazione di Samba.
-Inserire quindi l'indirizzo IP addizionale e premere il pulsante di salvataggio:
-se necessario, il sistema creerà automaticamente un bridge sulla rete green.
-
-Utenti e gruppi possono essere gestiti dalla pagina :guilabel:`Utenti e gruppi`.
-
-Utenti predefiniti
-------------------
-
-Dopo aver installato Samba Active Directory, la pagina :guilabel:`Utenti e gruppi` contiene
-l'utente predefinito :dfn:`administrator`.
-Questo utente ha dei privilegi speciali su alcuni servizi specifici,
-come aggiungere una workstation al dominio Samba.
-
-La password di default per l'utente administrator è: *Nethesis,1234*
-
-.. tip:: Ricordarsi di cambiare la password dell'utente administrator al primo login.
-
-
-Installazione su macchina virtuale
-----------------------------------
-
-Samba Active Directory viene eseguita all'interno di un container che utilizza un bridge di rete virtuale con l'interfaccia di rete del sistema.
-L'interfaccia di rete virtuale deve essere visibile all'interno della rete fisica, ma spesso i software di virtualizzazione bloccano il traffico ARP e questo preclude la visibilità del container Samba Active Directory all'interno della LAN.
-
-È quindi necessario assicurarsi che il virtualizzatore abiliti il traffico di rete con la *modalità promiscua*.
-
-VirtualBox
-~~~~~~~~~~
-
-Per configurare la modalità promiscua, selezionare "Permetti tutto" dal menù a discesa presente nella sezione di configurazione di rete.
-
-VMWare
-~~~~~~
-
-Entrare nella sezione di configurazione di rete del nodo da virtualizzare e abilitare lo switch virtuale in modalità promiscua.
-
-KVM
-~~~
-
-Assicurarsi che la macchina virtuale sia in bridge con un bridge reale (per esempio br0) e che sia configurato in modalità promiscua.
-
-È possibile forzare un bridge (br0) in modalità promiscua usando il seguente comando: ::
-
-  ifconfig br0 promisc
-
-
-
 Utenti
 ======
 
 L'utente di sistema è necessario per accedere a molti servizi erogati da |product| (email, cartelle condivise etc.).
-Ogni utente è caratterizzato da una coppia di credenziali (utente e password).
-
+Ogni utente è caratterizzato da una coppia di credenziali (utente e password). 
 
 I seguenti campi sono obbligatori per la creazione di un utente:
 
 * Username
-* Nome completo (nome e cognome)
+* Nome
+* Cognome
 
-Al termine della creazione, un utente risulta disabilitato fino a quando non viene impostata una password usando il pulsante
+Campi opzionali:
+
+* Società
+* ufficio
+* Indirizzo
+* Città
+* Telefono
+
+Al termine della creazione, un utente risulta disabilitato fino a quando non viene settata una password usando il pulsante
 :guilabel:`Cambia password`.
 Un utente bloccato non può utilizzare i servizi che richiedono autenticazione.
 Quando un utente è abilitato, l'utente può accedere al Server Manager e cambiare la propria password: :ref:`user_profile-section`.
 
-Un utente può essere aggiunto ad uno o più gruppi usando la pagina :guilabel:`Utenti` o :guilabel:`Gruppi`.
+Un utente può essere aggiunto ad uno o più gruppi usando la pagina :guilabel:`Utenti` o :guilabel:`Groppi`.
 
 A volte può essere necessario bloccare l'accesso ai servizi di un utente senza eliminare l'account.
 E' possibile farlo usando i pulsanti :guilabel:`Blocca` e :guilabel:`Sblocca`.
 
 
-.. note:: Quando utente viene eliminato, verranno eliminati anche tutti i dati dell'utente.
+.. note:: Quando utente viene eliminati, verranno eliminati anche tutti i dati dell'utente.
 
 .. _users_services-section:
 
@@ -124,14 +43,7 @@ Accesso ai servizi
 ------------------
 
 Dopo la creazione, un utente può essere abilito ad alcuni o tutti i servizi.
-L'accesso deve essere effettuato usando il nome utente completo di dominio: `username@<domain>`.
-
-Esempio:
-
-* Dominio: nethserver.org
-* Username: goofy
-
-L'utente completo da utilizzare per l'accesso ai servizi è: `goofy@nethserver.org`.
+La configurazione può essere fatta dalla sezione :guilabel:`Servizi`.
 
 
 .. _groups-section:
@@ -146,22 +58,40 @@ Come gli utenti, un gruppo può essere abilitato ad alcuni (o tutti) i servizi.
 .. tip:: Per delegare l'accesso al Server Manager è possibile
          utilizzare i gruppi ``administrators`` e ``managers``.
 
-Si possono creare due gruppi speciali e gli utenti che appartengono a
+Si possono creare due gruppi speciali, gli utenti che appartengono a
 questi gruppi ottengono dei permessi aggiuntivi alle pagine del Server
 Manager.
 
 * :dfn:`administrators`: Gli utenti di questo gruppo hanno gli stessi
-  permessi di ``root``.
+  permessi di ``root`` e ``admin``.
 
 * :dfn:`managers`: Gli utenti di questo gruppo hanno l'accesso alle
   pagine della sezione *Gestione*.
+
+
+.. _admin_user-section:
+
+Utente admin
+============
+
+La pagina :guilabel:`Utenti` ha un elemento di default:
+:dfn:`admin`. Questo account consente di accedere al Server Manager
+con gli stessi permessi dell'utente :dfn:`root`.  Inizialmente è
+*disabilitato* e non ha accesso dalla console.
+
+.. tip:: Per abilitare l'account ``admin`` impostare la sua password.
+
+Dove possibile, l'utente ``admin`` ha dei privilegi speciali su alcuni
+servizi specifici, come :ref:`aggiungere una workstation al dominio
+Samba <samba_pdc>`.
 
 
 Gestione password
 =================
 
 Il sistema prevede la possibilità di impostare dei vincoli sulla :dfn:`complessità` e la :dfn:`scadenza` delle password.
-Le politiche di gestione password possono essere cambiate usando l'interfaccia web.
+
+Le politiche di gestione password possono essere cambiate usando l'interfaccia web dopo aver installato il modulo ``nethserver-password``.
 
 Complessità
 -----------
@@ -183,12 +113,23 @@ La policy :index:`strong` impone che la password debba rispettare le seguenti re
 * non deve essere presente nei dizionari di parole comuni 
 * deve essere diversa dallo username
 * non può avere ripetizioni di pattern formati da più 3 caratteri (ad esempio la password As1.$As1.$ non è valida)
-* se è installato Samba Active Directory, sarà abilitato anche lo storico delle password
 
 La policy di default è :dfn:`strong`.
 
 .. warning:: Cambiare le politiche predefinite è altamente sconsigliato. L'utilizzo di password deboli è la prima
    causa di compromissione dei server da parte di attaccanti esterni.
+
+Per cambiare l'impostazione a none::
+ 
+  config setprop passwordstrength Users none
+
+Per cambiare l'impostazione a strong::
+ 
+  config setprop passwordstrength Users strong
+
+Verificare la policy attualmente in uso sul server::
+
+ config getprop passwordstrength Users
 
 Scadenza
 --------
@@ -199,12 +140,53 @@ Il sistema invierà una mail informativa all'utente quando la sua password è in
 .. note:: Al momento dell'attivazione il sistema farà riferimento alla data dell'ultimo cambio password, 
    se tale data è precedente più di 6 mesi, il server invierà una mail per segnalare che la password è scaduta. 
    In tal caso è necessario cambiare la password dell'utente.
-   Ad esempio: se l'ultimo cambio password è stato fatto a gennaio e l'attivazione della scadenza in ottobre, 
+   Ad esempio: se l'ultimo cambio password è stato fatto in gennaio, e l'attivazione della scadenza in ottobre, 
    il sistema riterrà la password cambiata in gennaio come scaduta, e lo segnalerà all'utente.
+
+Per ignorare la scadenza password globalmente (consentire l'accesso anche ad utenti con password scaduta)::
+
+ config setprop passwordstrength PassExpires no
+ signal-event password-policy-update
+
+Per disabilitare la scadenza password su un utente (sostituire username con l'utente)::
+
+ db accounts setprop <username> PassExpires no
+ signal-event password-policy-update
+
+
+Di seguito sono riportati i comandi per visualizzare le policy in uso.
+
+Numero massimo di giorni per cui è possibile tenere la stessa password (default:180)::
+
+ config getprop passwordstrength MaxPassAge
+
+
+Numero minimo di giorni per cui si è costretti a tenere la stessa password (default 0)::
+
+ config getprop passwordstrength MinPassAge
+
+
+Numero di giorni in cui viene inviato il warning per email (default:7)::
+
+ config getprop passwordstrength PassWarning
+
+
+Per modificare i parametri sostituire al comando :command:`getprop` il comando :command:`setprop` e 
+specificare in fondo alla riga il valore desiderato del parametro, infine dare il comando::
+
+ signal-event password-policy-update
+
+per rendere effettive le modifiche.
+
+Ad esempio per modificare a 5 il "Numero di giorni in cui viene inviato il warning per email"::
+
+ config setprop passwordstrength PassWarning 5
+ signal-event password-policy-update
+
 
 
 Effetti password scaduta
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Allo scadere della password l'utente sarà in grado di scaricare regolarmente la posta ma non potrà più accedere alle cartelle
 e stampanti condivise sul server (Samba) o da altri pc in caso il pc faccia parte del dominio. 
@@ -218,8 +200,8 @@ In quest'ultimo caso non è possibile impostare password più corte di *6 caratt
 delle policy sul server. Infatti Windows esegue dei controlli preliminari e invia le password al server dove vengono poi valutate 
 con le policy in uso.
 
-Lingua notifiche
-================
+Notification language
+=====================
 
 La lingua di default per le notifiche è l'inglese.
 Se si desidera cambiarla, usare il seguente comando: ::
@@ -230,4 +212,29 @@ Esempio per l'italiano: ::
 
   config setprop sysconfig DefaultLanguage it_IT.utf8
 
+
+Importazione utenti
+===================
+
+E' possibile importare una lista di utenti a partire da un file CSV.
+Il file deve contenere una linea per utente, ogni linea deve avere i campi separati da TAB, rispettando il seguente formato: ::
+
+ username    firstName    lastName    email    password
+
+Esempio: ::
+
+ mario  Mario   Rossi   mario@example.org       112233
+
+
+Assicurarsi che il modulo server di posta sia installato, quindi eseguire il comando: ::
+
+  /usr/share/doc/nethserver-directory-<ver>/import_users <youfilename>
+
+Per esempio, se il file che contiene gli utenti si chiama :file:`/root/users.csv`, eseguire: ::
+
+  /usr/share/doc/nethserver-directory-`rpm --query --qf "%{VERSION}" nethserver-directory`/import_users /root/users.csv
+
+Il comando può essere eseguito più volte: gli utenti esistenti saranno saltati.
+
+.. note:: Il comando fallisce se il modulo del server di posta non è installto.
 

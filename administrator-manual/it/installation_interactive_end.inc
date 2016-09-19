@@ -1,3 +1,3 @@
-Si potrà dunque procedere :ref:`accedendo al Server Manager
-<access-section>` per :ref:`installare il software
-<package_manager-section>` addizionale.
+Al termine dell'installazione, :ref:`accedere al Server
+Manager <access-section>` per :ref:`registrare la macchina
+<registration-section>`.

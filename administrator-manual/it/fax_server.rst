@@ -49,7 +49,7 @@ Autenticazione
 Il sistema supporta due metodi di autenticazione per l'invio di fax:
 
 * Host Based: utilizza l'indirizzo IP del computer che invia la richiesta
-* PAM: utilizza nome utente e password, gli utenti devono appartenere al gruppo *faxmaster*.
+* PAM: utilizza nome utente e password, gli utenti devono appartenere al gruppo *faxmaster*
 
 Assicurarsi inoltre che sia abilitata l'opzione :guilabel:`Visualizza fax inviati dai client`.
 
@@ -77,7 +77,7 @@ Mail2Fax
 
 Tutto le email inviate da rete locale all'indirizzo ``sendfax@<nomedominio>`` saranno trasformate in fax ed inviate al destinatario.
 
-Il ``<nomedominio>`` deve corrispondere ad un dominio di posta configurato per la consegna locale.
+Il ``<nomedominio>`` deve corrispondere ad un dominio di posa configurato per la consegna locale.
 
 Le mail devono rispettare questo formato:
 

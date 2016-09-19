@@ -52,10 +52,7 @@ Moduli
    ups
    dns
    dhcp
-   phone_home
-   snmp
-   statistics
-
+	      
 NethService
 ^^^^^^^^^^^
 
@@ -69,12 +66,13 @@ NethService
    shared_folder
    samba
    chat
-   nextcloud
+   owncloud
    fax_server
    ftp
    webvirtmgr
    webtop4
-   virtual_hosts
+   adagios
+   ocs
 
 NethSecurity
 ^^^^^^^^^^^^
@@ -86,11 +84,12 @@ NethSecurity
    web_proxy
    content_filter
    flashstart
-   suricata
-   bandiwidth_monitor
+   snort
+   bandwidth_monitor
    pop3_proxy
    vpn
    ftp
+   owncloud
    weekly_report
    hotspot
    proxy_pass
@@ -104,7 +103,6 @@ NethVoice
    nethvoice_intro
    nethcti_intro
    phonebook-mysql
-   ha
 
 
 Best practices
