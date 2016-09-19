@@ -166,3 +166,8 @@ First clone the repository, enter language directory and type ::
    make html
 
 Output files will be generated inside the *_build* directory.
+
+Links
+=====
+
+Theme from: https://github.com/ryan-roemer/sphinx-bootstrap-theme
