@@ -155,12 +155,6 @@ Build documentation
 
 Whenever there are modifications, a build process will be launched from Read the Docs site.
 
-If you wish to build documentation locally, follow these steps on a NethServer machine: ::
-
-   yum install python-sphinx python-pip
-   pip install sphinx_bootstrap_theme
-
-
 First clone the repository, enter language directory and type ::
 
    make html
