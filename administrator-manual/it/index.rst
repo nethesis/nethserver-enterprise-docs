@@ -4,9 +4,7 @@ Manuale amministratore
 ======================
 
 .. image:: _static/logo.png
-   :alt: NethServer Enterprise
-
-.. rubric:: |product| è un sistema operativo progettato per le piccole e medie imprese. Semplice, sicuro, flessibile.
+   :alt: |product|
 
 .. sidebar:: Contatti
 
@@ -104,7 +102,6 @@ NethVoice
    nethvoice_intro
    nethcti_intro
    phonebook-mysql
-   ha
 
 
 Best practices
