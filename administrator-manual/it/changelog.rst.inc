@@ -1,13 +1,31 @@
 Cambiamenti
 ===========
 
-* NethForge è ora installata e abilitata di default
-* Aggiornamenti da CentOS 6.8
-* La policy di SELinux è cambiata da ``permissive`` a ``disabled``
-* Il pacchetto ``collectd`` è stato aggiornato dalla versione 4 alla 5
-* Elenco completo degli `aggiornamenti alla 6.8`_
-* Elenco completo delle `migliorie della release 6.7`_
-  
+Questa è la prima release ufficiale di |product| 7.
+A partire da questa release, ogni installazione sarà aggiornabile alla versione finale.
 
-.. _`aggiornamenti alla 6.8`: http://dev.nethserver.org/projects/nethserver/issues?query_id=65
-.. _`migliorie della release 6.7`: http://dev.nethserver.org/projects/nethserver/issues?query_id=64
+Una lista completa dei cambiamenti è qui:
+
+* https://www.nethserver.org/nethserver-7-beta1-mayo-released/
+* https://www.nethserver.org/nethserver-7-beta2-bruschetta-released/
+
+Changelog completo:
+https://github.com/NethServer/dev/milestone/5?closed=1
+
+Bug noti:
+https://github.com/NethServer/dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug
+
+
+Moduli rimossi
+--------------
+
+I seguenti pacchetti sono stati rimossi:
+
+* nethserver-collectd-web: sostituito da nethserver-cgp
+* nethserver-password: integrato in nethserver-sssd
+* nethserver-faxweb2: http://community.nethserver.org/t/ns-7-faxweb2-vs-avantafax/2645
+* nethserver-fetchmail: sostituto da nethserver-getmail
+* nethserver-ocsinventory, nethserver-adagios: a causa di problemi di compatibilità con Nagios,
+  questi moduli sono mantenuti solo nella release 6.x
+* nethserver-snort: sostituito da nethserver-suricata
+
