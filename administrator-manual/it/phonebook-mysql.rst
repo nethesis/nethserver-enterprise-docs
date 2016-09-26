@@ -94,20 +94,3 @@ Per visualizzare i campi della rubrica centralizzata: ::
 
  mysql -e "describe phonebook.phonebook"
 
-Configurazione Avanzata Importazione SOGo
------------------------------------------
-
-L'interfaccia consente di attivare o disattivare l'importazione di tutte le rubriche condivise a tutti gli utenti locali, è possibile ottenere una configurazione più specifica con dei comandi da shell.
-
-Abilitare l'esportazione rubrica di un singolo utente SOGo: ::
-
- config setprop phonebook sogo giacomo
-
-Ritornare alla configurazione di default, importazione di tutte le rubriche condivise di SOGo: ::
-
- config setprop phonebook sogo all
-
-Disabilitare esportazione rubriche di SOGo: ::
-
- config setprop phonebook sogo disabled
-

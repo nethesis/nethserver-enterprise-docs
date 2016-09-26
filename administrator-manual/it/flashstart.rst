@@ -15,7 +15,7 @@ Configurazione
 
 La configurazione del filtro è composta da due parti:
 
-* un profilo associato ad un gruppo di utenti o un groppo di host
+* un profilo associato ad un gruppo di utenti o un gruppo di host
 * una selezione di blacklist associata al profilo creato
 
 I profili devono essere creati attraverso l'interfaccia web di |product|,

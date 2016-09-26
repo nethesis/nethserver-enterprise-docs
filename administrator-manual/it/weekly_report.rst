@@ -13,16 +13,19 @@ Il report è componibile, ovvero l'utente può definire quali tabelle e/o
 grafici (widget) includere nel report.
 
 
-.. note:: E' possibile consultare il report e il suo storico nella Dashboard.
+E' possibile consultare il report corrente e lo storico accedendo al
+Server Manager.
 
 
 Installazione
 =============
+
 Installare l'addon selezionando nethserver-report dal pannello
-Gestione Add-on di NethServer Enterprise.
+:guilabel:`Software center`.
 
 Configurazione
 ==============
+
 La configurazione del report si trova nella sezione Report Settimanale
 dell'interfaccia web di configurazione. Questa riporta la lista dei
 widget attivabili/disattivabili.
