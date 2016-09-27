@@ -8,9 +8,9 @@ Administrator manual
 
 .. sidebar:: Contacts
 
-    Official site: `www.nethesis.it <http://www.nethesis.it>`_
+    Support: `helpdesk.nethesis.it <http://helpdesk.nethesis.it>`_
 
-    Documentation: `helpdesk.nethesis.it <http://helpdesk.nethesis.it>`_
+    Official site: `www.nethesis.it <http://www.nethesis.it>`_
 
     
 Release notes |release|
