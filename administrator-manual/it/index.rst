@@ -8,9 +8,9 @@ Manuale amministratore
 
 .. sidebar:: Contatti
 
-    Sito ufficiale: `www.nethesis.it <http://www.nethesis.it>`_
+    Supporto: `helpdesk.nethesis.it <http://helpdesk.nethesis.it>`_
 
-    Documentazione: `helpdesk.nethesis.it <http://helpdesk.nethesis.it>`_
+    Sito ufficiale: `www.nethesis.it <http://www.nethesis.it>`_
 
     
 Note di rilascio |release|
@@ -65,7 +65,6 @@ NethService
    pop3_connector
    webmail
    shared_folder
-   samba
    chat
    nextcloud
    fax_server

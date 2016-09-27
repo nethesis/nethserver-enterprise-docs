@@ -260,7 +260,6 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        ("Helpdesk", "http://helpdesk.nethesis.it", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
@@ -270,7 +269,7 @@ html_theme_options = {
     'navbar_pagenav': True,
 
     # Tab name for the current pages TOC. (Default: "Page")
-    'navbar_pagenav_name': "Capitolo",
+    'navbar_pagenav_name': "Argomenti",
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
