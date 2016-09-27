@@ -64,7 +64,7 @@ nella pagina :guilabel:`Generale` con il seguente contenuto: ``translate.google`
 Utenti da Active Directory
 ==========================
 
-Se il server è stato configurato per fare il join ad un dominio Active Directory (:ref:`samba_ads`),
+Se il server è stato configurato per fare il join ad un dominio Active Directory,
 è possibile creare profili collegati ad utenti appartenenti al dominio.
 
 .. note:: I gruppi residenti nell'Active Directory non sono supportati.
