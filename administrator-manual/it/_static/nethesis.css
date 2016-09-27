@@ -136,9 +136,6 @@ pre, blockquote {
     background-color: #259ed5;
     color: white !important;
 }
-.reference.internal[href="#"]::before {
-    content: "di:  ";
-}
 .reference.internal[href="#"] {
     font-weight: bolder;
 }
