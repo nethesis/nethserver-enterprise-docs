@@ -26,8 +26,8 @@ specificati:
 * l'indirizzo del server remoto,
 * le credenziali dell'account,
 * l'utente o il gruppo locale dove consegnare i messaggi,
-* se SSL va disabilitato (sconsigliato),
-* se un messaggio va eliminato dal server remoto dopo la consegna.
+* se un messaggio va eliminato dal server remoto dopo la consegna,
+* se effettuare la scansione antivirus e antispam
 
 .. note:: È possibile creare un numero illimitato di account esterni
           associati ad un gruppo o un utente di sistema.
@@ -41,20 +41,17 @@ impostare ogni quanto controllare la presenza di messaggi nel server
 remoto, dal menù :guilabel:`Controlla ogni`.
 
 .. index::
-   pair: Fetchmail; software
+   pair: Getmail; software
 
-L'implementazione sottostante è basata su :dfn:`Fetchmail`
-[#Fetchmail]_.  Dopo aver scaricato i messaggi dal provider POP3/IMAP,
-Fetchmail li consegna localmente connetendosi direttamente al filtro
+L'implementazione sottostante è basata su :dfn:`Getmail`
+[#Getmail]_.  Dopo aver scaricato i messaggi dal provider POP3/IMAP,
+Getmail li consegna localmente connetendosi direttamente al filtro
 di posta locale.  I messaggi vengono filtrati in base alle
 :ref:`regole configurate <email_filter>`.
 
-Tutte le operazioni di download sono riportate nei seguenti file:
+Tutte le operazioni di download sono riportate nel seguente file :file:`/var/log/maillog`.
 
-* :file:`/var/log/fetchmail.log`
-* :file:`/var/log/maillog`
-
-.. warning:: Se un account di :ref:`Active Directory <samba_ads>`
+.. warning:: Se un account di Active Directory
              scelto per la consegna viene eliminato in un secondo
              momento, la configurazione diventa inconsistente.  La
              configurazione dell'account esistente nella pagina
@@ -63,6 +60,6 @@ Tutte le operazioni di download sono riportate nei seguenti file:
 
 .. rubric:: Riferimenti
 
-.. [#Fetchmail] Fetchmail è una programma per ricevere e inoltrare la
-                posta remota http://www.fetchmail.info/
+.. [#Getmail] Getmail è una programma per ricevere e inoltrare la
+                posta remota http://pyropus.ca/software/getmail/
 
