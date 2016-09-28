@@ -16,7 +16,6 @@ h1, h2, h6, .h1, .h2, .h6 {
     color: #333 !important;
 }
 h1 {
-    /*border-bottom: 1px solid #dcdcdc !important;*/
     padding-bottom: 15px;
 }
 h2 {
@@ -55,7 +54,7 @@ ul ul {
     margin: 10px 0;
 }
 p {
-    margin: 0 0 10px 0;
+    margin-bottom: 15px;
     color: #444;
 }
 a {
@@ -69,11 +68,6 @@ pre, blockquote {
 
 .navbar .container {
     padding: 0;
-}
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-    font-family: 'Open Sans Condensed', Helvetica, sans-serif !important;
-    font-size: x-large;
-    font-weight: bolder;
 }
 .container>.navbar-header {
     padding: 0 15px;
@@ -107,15 +101,8 @@ pre, blockquote {
 .navbar-right {
     margin-right: 0 !important;
 }
-.navbar-default .navbar-brand span {
-    margin-right: 10px;
-}
-.navbar-default .navbar-brand, .navbar-default .navbar-text {
-    color: #333 !important;
-}
 .navbar-default .navbar-text {
-    font-size: x-large;
-    margin: 20px 0 0px 8px;
+    display: none;
 }
 .navbar-form .form-control {
     border: 4px solid #b7dfff !important;
@@ -153,11 +140,14 @@ h2 ~ .section, #manuale-amministratore, #appendice, .section:last-child {
 div.sidebar {
     margin: 22px 0 0.5em 1em;
     border: 1px solid #ccc;
-    padding: 20px 15px;
+    padding: 20px;
     background-color: #fffdf8;
     width: 40%;
     float: right;
     border-radius: 6px;
+}
+div.sidebar p {
+    margin: 0;
 }
 .simple {
     margin: 15px 0 20px 0;
@@ -180,12 +170,31 @@ div.admonition {
 img[alt="|product|"] {
     display: none;
 }
+.guilabel {
+    font-style: italic;
+    font-weight: bolder;
+}
+.table>tbody>tr>td, .table>tfoot>tr>td {
+    word-break: break-word;
+}
+footer p {
+    margin-top: 20px;
+}
+footer .pull-right a {
+    border: 1px solid #bbb;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #eee;
+}
+footer .pull-right a:hover {
+    background-color: #ddd;
+}
 
 /* -- Media queries ------------------------------------------------------- */
 
 @media (max-width: 767px) {
     body {
-        padding-top: 69px !important;
+        padding-top: 72px !important;
     }
     h2 {
         width: 100%;
@@ -204,14 +213,7 @@ img[alt="|product|"] {
         margin-left: 10px;
     }
     .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
-        font-size: medium;
-        height: 46px;
-        width: 237px;
-        padding-right: 0 !important;
-    }
-    .navbar-default .navbar-text {
-        font-size: initial;
-        margin: 16px 0 0;
+        height: 55px;
     }
     div.sidebar {
         margin: 12px 0 1.5em 0em;
@@ -222,7 +224,7 @@ img[alt="|product|"] {
 }
 @media (min-width: 768px) {
     body {
-        padding-top: 141px !important;
+        padding-top: 137px !important;
     }
     .open>.dropdown-menu {
         display: inline-table;
@@ -243,9 +245,7 @@ img[alt="|product|"] {
         border-right: none;
     }
     .navbar-brand {
-        height: 72px;
-        width: 416px;
-        padding-right: 0 !important;
+        height: 68px;
     }
 }
 @media (min-width: 992px) {
