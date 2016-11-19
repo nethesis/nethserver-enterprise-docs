@@ -3,9 +3,6 @@
 Administrator manual
 ====================
 
-.. image:: ../it/_static/logo.png
-   :alt: |product|
-
 .. sidebar:: Contacts
 
     Support: `helpdesk.nethesis.it <http://helpdesk.nethesis.it>`_
