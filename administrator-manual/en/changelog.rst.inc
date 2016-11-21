@@ -8,12 +8,11 @@ A complete list fo changes for this release can be found here:
 
 * https://www.nethserver.org/nethserver-7-beta1-mayo-released/
 * https://www.nethserver.org/nethserver-7-beta2-bruschetta-released/
+* https://www.nethserver.org/nethserver-7-rc1-saltimbocca-released/
 
-Full changelog:
-https://github.com/NethServer/dev/milestone/5?closed=1
+Full changelog [here](https://github.com/NethServer/dev/issues?q=is%3Aissue+is%3Aclosed+milestone%3Av7+closed%3A%3C2016-10-18T13%3A22%3A00Z&utf8=%E2%9C%93)
 
-Known bugs:
-https://github.com/NethServer/dev/issues?q=is%3Aissue+is%3Aopen+label%3Abug
+Known bugs [here](https://github.com/NethServer/dev/issues?page=2&q=is%3Aissue+is%3Aclosed+milestone%3Av7+created%3A%3C2016-10-18&utf8=%E2%9C%93)
 
 
 Discontinued packages
