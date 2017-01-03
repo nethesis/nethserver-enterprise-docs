@@ -27,7 +27,7 @@ specificati:
 * le credenziali dell'account,
 * l'utente o il gruppo locale dove consegnare i messaggi,
 * se un messaggio va eliminato dal server remoto dopo la consegna,
-* se effettuare la scansione antivirus e antispam
+* se il messaggio scaricato deve essere sottoposto ai controlli antispam e antivirus
 
 .. note:: È possibile creare un numero illimitato di account esterni
           associati ad un gruppo o un utente di sistema.
@@ -45,14 +45,14 @@ remoto, dal menù :guilabel:`Controlla ogni`.
 
 L'implementazione sottostante è basata su :dfn:`Getmail`
 [#Getmail]_.  Dopo aver scaricato i messaggi dal provider POP3/IMAP,
-Getmail li consegna localmente connetendosi direttamente al filtro
-di posta locale.  I messaggi vengono filtrati in base alle
+Getmail applica tutti i filtri richiesti, quindi consegna 
+il messaggio localmente.
+I messaggi vengono filtrati in base alle
 :ref:`regole configurate <email_filter>`.
 
-Tutte le operazioni di download sono riportate nel seguente file :file:`/var/log/maillog`.
+Tutte le operazioni di download sono riportate nel file :file:`/var/log/maillog`.
 
-.. warning:: Se un account di Active Directory
-             scelto per la consegna viene eliminato in un secondo
+.. warning:: Se un account scelto per la consegna viene eliminato in un secondo
              momento, la configurazione diventa inconsistente.  La
              configurazione dell'account esistente nella pagina
              :guilabel:`Connettore POP3` deve essere disabilitata o
@@ -60,6 +60,5 @@ Tutte le operazioni di download sono riportate nel seguente file :file:`/var/log
 
 .. rubric:: Riferimenti
 
-.. [#Getmail] Getmail è una programma per ricevere e inoltrare la
-                posta remota http://pyropus.ca/software/getmail/
+.. [#Getmail] Getmail is a remote-mail retrieval utility http://pyropus.ca/software/getmail/
 

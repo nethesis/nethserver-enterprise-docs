@@ -75,7 +75,7 @@ I fax spediti avranno come mittente l'id del utente specificato. Questa informaz
 Mail2Fax
 ========
 
-Tutte le email inviate da rete locale all'indirizzo ``sendfax@<nomedominio>`` saranno trasformate in fax ed inviate al destinatario.
+Tutto le email inviate da rete locale all'indirizzo ``sendfax@<nomedominio>`` saranno trasformate in fax ed inviate al destinatario.
 
 Il ``<nomedominio>`` deve corrispondere ad un dominio di posta configurato per la consegna locale.
 
