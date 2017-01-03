@@ -16,10 +16,7 @@ During a name lookup the server will:
 * search for the name between hosts configured locally 
 * perform a query on external dns: requests are stored in cache to speed up subsequent queries
 
-If |product| is also the DHCP server on the network, all the machines will be configured to use the server istelf for name resolution.
-
-
-.. note:: You must specify at least one external DNS inside the :guilabel:`DNS server` page.
+If |product| is also the DHCP server on the network, all the machines will be configured to use the server itself for name resolution.
 
 
 Hosts

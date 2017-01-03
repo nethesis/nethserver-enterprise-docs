@@ -81,8 +81,12 @@ Esempio, ripristinare un file alla versione di 15 giorni fa: ::
 
 L'opzione ``-t`` consente di specificare il numero di giorni, in questo caso 15.
 
-.. note:: Nel caso si utilizzi **CIFS** per accedere alla condivisione e il comando di restore non funzioni nel modo atteso, verificare che utente e password della condivisione di rete siano corretti. Se la coppia utente/password è sbagliata nel file ``/var/log/messages`` si troveranno degli errori di NT_STATUS_LOGON_FAILURE. Allo stesso tempo il comando ``backup-data-list`` non andrà a buon fine e uscirà immediatamente riportando degli errori.
-
+.. note:: Nel caso si utilizzi *CIFS* per accedere alla condivisione e il comando di restore 
+          non funzioni nel modo atteso, verificare che utente e password della condivisione di rete siano corretti.
+          Se la coppia utente/password è sbagliata nel file :file:`/var/log/messages` si troveranno degli errori 
+          di NT_STATUS_LOGON_FAILURE.
+          Allo stesso tempo il comando :command:`backup-data-list` non andrà a buon fine e uscirà immediatamente 
+          riportando degli errori.
 
 Interfaccia grafica
 -------------------
@@ -90,7 +94,8 @@ Interfaccia grafica
 Nel menu :menuselection:`Restore Data` è possibile cercare, selezionare e ripristinare
 una o più cartelle dal backup, navigando l'albero grafico con tutti i percorsi inclusi nel backup.
 
-Di default viene mostrato l'albero dell'ultimo backup, se si desidera ripristinare un file di un backup precedente, selezionare la data del backup dal selettore *"File Backup"*
+Di default viene mostrato l'albero dell'ultimo backup, se si desidera ripristinare un file di un backup precedente, selezionare la data del backup dal seletto
+re *"File Backup"*.
 
 Ci sono due opzioni di ripristino:
 

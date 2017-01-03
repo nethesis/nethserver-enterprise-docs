@@ -23,7 +23,7 @@ Supported modes are:
 * Transparent: all clients are automatically forced to use the proxy for HTTP connections
 * Transparent SSL: all clients are automatically forced to use the proxy for HTTP and HTTPS connections
 
-.. note:: Please make sure to have Users module installed (nethserver-directory package), if you plan to use authenticate mode.
+.. note:: If you plan to use authenticate mode, please make sure to configure an Account provider.
 
 Client configuration
 ====================
@@ -50,15 +50,11 @@ SSL Proxy
 
 .. warning:: Decrypting HTTPS connection without user consent is illegal in many countries.
 
-In transparent SSL mode, server is able to also filter encrypted HTTPS traffic.
-The proxy establishes the SSL connection with remote sites, it checks the validity of certificates and it decrypts the traffic.
-Finally, it generates a new certificate signed by the Certification Authority (CA) server itself.
+In transparent SSL mode, the server is able to also analyze HTTPS traffic.
+The proxy implements the "peek and splice" behavior: it establishes the SSL connection with remote sites and
+checks the validity of certificates without decrypting the traffic.
+Then the server can filter requested URLs using the web filter and return back the response to the client.
 
-The traffic between client and proxy is always encrypted, but you will need to install on every client (browser)
-the CA certificate of the server.
-
-The server certificate is located in :file:`/etc/pki/tls/certs/NSRV.crt`.
-It is advisable to transfer the file using an SSH client (eg FileZilla).
 
 Bypass
 ======
@@ -83,6 +79,7 @@ Link to web interface can be found at the :guilabel:`Applications` tab inside th
 
 Cache
 =====
+
 Under tab :guilabel:`Cache` there is a form to configure cache parameters:
 
 * The cache can be enabled or disabled (*disabled* by default)
