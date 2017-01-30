@@ -26,7 +26,7 @@ Be aware of the following rules about account providers:
 2. Local account providers cannot be uninstalled.
 
 Remote providers
-    A clean |product| installation is ready to connect a **remote** account
+    A clean |product| installation is ready to connect to a **remote** account
     provider of both types (LDAP, AD). The root user can configure the remote
     account provider from the :guilabel:`Accounts provider` page. 
     
@@ -39,12 +39,12 @@ Local providers
     and install either OpenLDAP **or** Samba 4 account provider from the modules list.
 
     After installing a local provider (either Samba 4 or OpenLDAP), the administrator
-    can create, modify, delete the users and groups.
+    can create, modify and delete the users and groups.
 
 .. warning::
 
-  Please, choose wisely your account provider because **the choice is not
-  reversible**. Also, the system will forbid any change to the FQDN after the
+  Please choose wisely your account provider because **the choice is not
+  reversible**. Also the system will forbid any change to the FQDN after the
   account provider has been configured.
 
 
@@ -52,7 +52,7 @@ Choosing the right account provider
 -----------------------------------
 
 Beside choosing to bind a remote provider or install a local one, the
-administrator must decide which backend type suits his needs.
+administrator has to decide which backend type suits he needs.
 
 The *File server* module of |product|, which enables the :guilabel:`Shared
 folders` page, can authenticate SMB/CIFS clients only if |product| is bound to an
@@ -62,7 +62,7 @@ folders` only in *guest mode*.  See :ref:`shared_folders-section`.
 On the other hand, the local OpenLDAP provider is more easy to install and
 configure.
 
-In the end, if the SMB file sharing protocol support is not required an
+In the end, if the SMB file sharing protocol support is not required, an
 LDAP provider is the best choice.
 
 
@@ -70,7 +70,7 @@ OpenLDAP local provider installation
 ------------------------------------
 
 From the :guilabel:`Software Center` install the module named
-*Account provider: OpenLDAP*. At the end of the installation, the
+*Account provider: OpenLDAP*. At the end of the installation the
 package is automatically configured and the administrator will be able to manage
 users and groups from the :guilabel:`User and groups` page.
 
@@ -88,12 +88,12 @@ network).
 
 Therefore the additional IP address must satisfy three conditions:
 
-1. the IP address must be **free**; it must not be used by any other machine,
+1. the IP address has to be **free**; it must not be used by any other machine,
 
-2. the IP address must be in the same subnet range of a green network,
+2. the IP address has to be in the same subnet range of a green network,
 
-3. the green network must be bound to a bridged interface, so that the Linux
-   Container can attach its virtual interface to it; the UI procedure can create the
+3. the green network has to be bound to a bridged interface where the Linux
+   Container can attach its virtual interface to; the installation procedure can create the
    bridge interface automatically, if it is missing.
 
 From the :guilabel:`Software center` page install the module named *Account
@@ -119,9 +119,9 @@ the page :guilabel:`User and groups` to see the default accounts.
 After installing Samba Active Directory, the :guilabel:`Users and groups` page
 has two default entries; both are disabled: :dfn:`administrator` and
 :dfn:`admin`. "Administrator" is the default Active Directory privileged account
-and is not required by |product|; it is safe to keep it disabled. "Admin" is
+and is not required by |product|; it is safe to keep it disabled. "admin" is
 defined by |product| as the default system administrative account. It is member
-of the AD "Administrators" and "Domain admins" groups. See :ref:`admin-account-section`
+of the AD "domain admins" group. See :ref:`admin-account-section`
 section for more details.
 
 
@@ -130,7 +130,7 @@ Installing on a virtual machine
 
 Samba Active Directory runs inside a Linux Container which uses a virtual
 network interface bridged to the network interface of the system. The virtual
-network interface must be visible inside the physical network, but often
+network interface has to be visible inside the physical network, but often
 virtualization solutions block ARP traffic. As a result, the Samba Active
 Directory container is not visible from LAN hosts.
 
@@ -146,7 +146,7 @@ located in the network settings section.
 VMWare
 ++++++
 
-Enter the networking configuration section of the virtualization node and set
+Enter the networking configuration section of the virtualization mode and set
 the virtual switch in promiscuous mode.
 
 KVM
@@ -205,7 +205,7 @@ Joining an Active Directory domain has the following pre-requisites:
    requires an additional account to perform simple LDAP binds.  Create a **dedicated
    user account** in AD, and set a complex *non-expiring* password for it.
 
-After all the pre-requisites are met, proceed with the join from the
+After all the prerequisites are fulfilled, proceed with the join from the
 :guilabel:`Accounts provider` page:
 
 * Fill :guilabel:`DNS server IP address` field which usually is the
@@ -214,7 +214,7 @@ After all the pre-requisites are met, proceed with the join from the
 * (only for Microsoft Active Directory) specify the **dedicated user account**
   credentials under the :guilabel:`Advanced settings` panel.
 
-* Push the :guilabel:`Submit` button. You will be prompted for an user name and
+* Push the :guilabel:`Submit` button. You will be prompted for an user name and a
   password: provide AD ``administrator`` or any other account
   credentials with permissions to join a new machine to the domain 
   (i.e. ``admin`` on |product|).
@@ -234,7 +234,7 @@ Users
 =====
 
 A newly created user account remains locked until it has set a password.
-Disabled users are denied access to system services.
+Disabled users are denied to access system services.
 
 When creating a user, following fields are mandatory:
 
@@ -249,20 +249,23 @@ actions.
 
 .. note:: When a user is deleted, all user data will be also deleted.
 
+.. index:: password
+
 Changing the password
 ---------------------
 
-If an inital password was not set during creation, the user account is disabled.
+If there wasn't given an initial password during user creation, the user account is disabled.
 To enable it, set a password using the :guilabel:`Change password` button.
 
 When a user is enabled, the user can access the Server Manager and change
-his/her own password (see also :ref:`user_profile-section`).
+his/her own password by going to the :guilabel:`user@domain.com` label on the
+upper right corner of the screen and clicking on :guilabel:`Profile`.
 
 If the system is bound to an Active Directory account provider, users can change
-their password using the Windows tools.  In this case you can not set passwords
+their password also using the Windows tools.  In this case you can not set passwords
 shorter than 6 *characters* regardless of the server policies. Windows performs
-preliminary checks and sends the password to the server where they are then
-evaluated according to the :ref:`configured policies <password-management-section>`.
+preliminary checks and sends the password to the server where it is evaluated 
+according to the :ref:`configured policies <password-management-section>`.
 
 
 Credentials for services
@@ -288,19 +291,18 @@ Short user name form
 Groups
 ======
 
-A group of users can be used to assign special permissions to some users, such
-as authorize access over a :ref:`shared folder <shared_folders-section>`.
+A group of users can be granted some permission, such as authorize
+access over a :ref:`shared folder <shared_folders-section>`. The granted
+permission is propagated to all group members.
 
-Two special groups can be created.  The users who belong in one of these groups
-are granted access to the panels of the Server Manager:
+Two special groups can be created.  Members of these groups are granted access
+to the panels of the Server Manager:
 
-* :dfn:`administrators`: Users of this group have the same permissions as the
+* :dfn:`domain admins`: members of this group have the same permissions as the
   *root* user from the Server Manager.
 
-* :dfn:`managers`: Users of this group are granted access to the *Management*
+* :dfn:`managers`: members of this group are granted access to the *Management*
   section of the Server Manager.
-
-
 
 .. index: admin
 
@@ -309,8 +311,8 @@ are granted access to the panels of the Server Manager:
 Admin account
 =============
 
-If a **local AD or LDAP provider** is installed, an *admin* user, member of  the
-*administrators* group is created automatically. This account allows
+If a **local AD or LDAP provider** is installed, an *admin* user, member of the
+*domain admins* group is created automatically. This account allows
 access to all configuration pages within the Server Manager.  It is initially
 *disabled* and has no access from the console.
 
@@ -320,13 +322,14 @@ Where applicable, the *admin* account is granted special privileges on some
 specific services, such as joining a workstation to an Active Directory domain.
 
 If |product| is bound to a **remote account provider**, the *admin* user and
-*administrators* group can be created, if they do not already exist.
+*domain admins* group could be created manually, if they do not already exist.
 
 If a user or group with a similar purpose is already present in the remote
-account provider database, but it is named differently, it can be selected with
-a `manual procedure
-<http://wiki.nethserver.org/doku.php?id=userguide:set_admin_account>`_.
+account provider database, but it is named differently, |product| can be
+configured to rely on it with the following commands: ::
 
+    config setprop admins user customadmin group customadmins
+    /etc/e-smith/events/actions/system-adjust custom
 
 .. _password-management-section:
 
@@ -340,7 +343,7 @@ Password policies can be changed from web interface.
 Complexity
 -----------
 
-The :index:`password` complexity is a set of minimum conditions that password must match to be accepted by the system:
+The :index:`password` complexity is a set of minimum conditions for password to be accepted by the system:
 You can choose between two different management policies about password complexity:
 
 * :dfn:`none`: there is no specific control over the password entered, but minimum length is 7 characters
@@ -371,7 +374,7 @@ The  :index:`password expiration` is enabled by default to 6 months from the tim
 The system will send an e-mail to inform the users when their password is about to expire.
 
 .. note:: The system will refer to the date of the last password change,
-   whichever is the earlier more than 6 months, the server will send an email to indicate that password has expired.
+   if password is older than 6 months, the server will send an email to indicate that password has expired.
    In this case you need to change the user password.
    For example, if the last password change was made in January and the activation of the deadline in October,
    the system will assume the password changed in January is expired, and notify the user.
